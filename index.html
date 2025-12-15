@@ -25,28 +25,16 @@
         font-family: system-ui, "Noto Sans JP", sans-serif;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        min-width: 100vh;
+        justify-content: center;
+        padding: 20px;
       }
       .site-header {
-        position: absolute;
+        position: sticky;
         top: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(11, 16, 32, 0.95);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        padding: 10px 16px;
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-      }
-      .site-header img {
-        height: 64px;
+        width: 100;
       }
       .card {
-        margin-top: 12px;
         width: min(720px, 100%);
         background: var(--card);
         border: 1px solid rgba(255, 255, 255, 0.1);

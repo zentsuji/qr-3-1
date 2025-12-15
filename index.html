@@ -34,6 +34,9 @@
         top: 0;
         width: 100;
       }
+      .site-header img {
+        height: 64px;
+      }
       .card {
         width: min(720px, 100%);
         background: var(--card);
@@ -75,6 +78,10 @@
       }
       .choice:hover {
         border-color: rgba(255, 255, 255, 0.28);
+      }
+      .choice.correct {
+        border-color: rgba(22, 163, 74, 0.45);
+        background: rgba(22, 163, 74, 0.15);
       }
       .choice.wrong {
         border-color: rgba(220, 38, 38, 0.7);
@@ -234,11 +241,12 @@
 
         // 全ボタンの状態更新
         const items = Array.from(document.querySelectorAll(".choice"));
-        items.forEach((el, i) => {
-          el.classList.remove("correct", "wrong");
-          if (i === QUIZ_DATA.correctIndex) el.classList.add("correct");
-        });
-        if (!correct) wrap.classList.add("wrong");
+        items.forEach((el) => el.classList.remove("correct", "wrong"));
+        if (correct) {
+        items[QUIZ_DATA.correctIndex].classList.add("correct");
+        } else {
+        wrap.classList.add("wrong");
+        }
 
         // 結果表示
         resOK.style.display = correct ? "block" : "none";

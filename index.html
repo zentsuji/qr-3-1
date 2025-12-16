@@ -138,33 +138,6 @@
         color: #ffd43b;
         font-size: 14px;
       }
-      .controls {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 12px;
-      }
-      .btn {
-        appearance: none;
-        border: none;
-        border-radius: 12px;
-        padding: 10px 14px;
-        font-weight: 700;
-        cursor: pointer;
-        color: white;
-        background: linear-gradient(
-          180deg,
-          rgba(59, 130, 246, 0.9),
-          rgba(59, 130, 246, 0.6)
-        );
-      }
-      .btn.alt {
-        background: linear-gradient(
-          180deg,
-          rgba(148, 163, 184, 0.35),
-          rgba(51, 65, 85, 0.35)
-        );
-      }
       footer {
         margin-top: 12px;
         color: var(--muted);
@@ -274,9 +247,6 @@
           </div>
         </div>
 
-        <div class="controls">
-          <button id="retryBtn" class="btn alt">リセット</button>
-        </div>
       </div>
     </main>
 
@@ -300,7 +270,6 @@
       const qText = $("qText");
       const choicesEl = $("choices");
       const keyword = $("keyword");
-      const retryBtn = $("retryBtn");
       const popupWrapper = document.getElementById("popup-wrapper")
       const close = document.getElementById("close")
       const popupTitle = document.getElementById("popup-title")

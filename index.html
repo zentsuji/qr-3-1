@@ -6,8 +6,11 @@
     <title>4択クイズ</title>
     <style>
       :root {
-        --bg: #0b1020;
-        --card: #111827;
+        --bg1: #4debf4;
+        --bg2: #1e9cd7;
+        --bg3: #3c80df;
+        --bg4: #6858eb;
+        --card: rgba(50, 50, 50, 0.45);
         --text: #e5e7eb;
         --muted: #94a3b8;
         --ok: #16a34a;
@@ -20,7 +23,7 @@
       }
       body {
         margin: 0;
-        background: var(--bg);
+        background: linear-gradient(345deg, var(--bg1), var(--bg2), var(--bg3), var(--bg4));
         color: var(--text);
         font-family: system-ui, "Noto Sans JP", sans-serif;
         display: flex;
@@ -28,11 +31,24 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url("img/it-hiroba-key-visual.png") center / cover no-repeat;
+        transform: translateY(225px);
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: -1;
       }
       .site-header {
         position: sticky;
         top: 0;
         width: 100;
+        margin-bottom: 16px;
       }
       .site-header img {
         height: 64px;
@@ -47,7 +63,7 @@
       }
       h1 {
         margin: 0 0 10px;
-        font-size: 20px;
+        font-size: 24px;
       }
       .desc {
         margin: 0 0 16px;
@@ -56,7 +72,7 @@
       }
       .question {
         margin: 6px 0 14px;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 800;
       }
       .choices {
@@ -75,17 +91,19 @@
         width: 100%;
         padding: 14px;
         cursor: pointer;
+        font-weight: 700;
+        font-size: 18px;
       }
       .choice:hover {
         border-color: rgba(255, 255, 255, 0.28);
       }
       .choice.correct {
-        border-color: rgba(22, 163, 74, 0.45);
-        background: rgba(22, 163, 74, 0.15);
+        border-color: rgba(22, 163, 74, 0.7);
+        background: rgba(22, 163, 74, 0.45);
       }
       .choice.wrong {
         border-color: rgba(220, 38, 38, 0.7);
-        background: rgba(220, 38, 38, 0.12);
+        background: rgba(220, 38, 38, 0.45);
       }
       .result {
         margin-top: 14px;
@@ -94,12 +112,12 @@
         display: none;
       }
       .result.ok {
-        background: rgba(22, 163, 74, 0.15);
-        border: 1px solid rgba(22, 163, 74, 0.45);
+        background: rgba(22, 163, 74, 0.45);
+        border: 1px solid rgba(22, 163, 74, 0.7);
       }
       .result.ng {
-        background: rgba(220, 38, 38, 0.15);
-        border: 1px solid rgba(220, 38, 38, 0.45);
+        background: rgba(220, 38, 38, 0.45);
+        border: 1px solid rgba(220, 38, 38, 0.7);
       }
       .kw {
         display: inline-block;
@@ -107,8 +125,18 @@
         padding: 6px 10px;
         border-radius: 10px;
         background: rgba(59, 130, 246, 0.18);
-        border: 1px solid rgba(59, 130, 246, 0.45);
+        border: 2px solid rgba(255, 255, 0, 0.32);
         font-weight: 700;
+        position: relative;
+        padding-left: 26px;
+        animation: pulse 0.8s ease-out 1;
+      }
+      .kw::before {
+        content: "★";
+        position: absolute;
+        left: 10px;
+        color: #ffd43b;
+        font-size: 14px;
       }
       .controls {
         display: flex;
@@ -159,7 +187,7 @@
         </div>
     </div>
     <main class="card">
-      <h1>4たくクイズ</h1>
+      <h1>よんたくクイズ</h1>
       <p class="desc">ただしいとおもうものをえらんでね！</p>
 
       <div id="quiz">

@@ -328,8 +328,8 @@
         popupWrapper.addEventListener("click", e => {
             if (e.target.id === popupWrapper.id || e.target.id === close.id) {
                 popupWrapper.style.display = "none";
+                renderQuiz()
             }
-            renderQuiz()
         });
       }
 

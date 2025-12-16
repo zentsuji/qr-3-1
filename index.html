@@ -308,13 +308,13 @@
         items.forEach((el) => el.classList.remove("correct", "wrong"));
         if (correct) {
         items[QUIZ_DATA.correctIndex].classList.add("correct");
-        popupTitle.textContent = "🎉 正解！"
-        popupBody.textContent = "キーワードは..."
+        popupTitle.textContent = "🎉 せいかい！"
+        popupBody.textContent = "キーワードは...？"
         popupWrapper.style.display = "flex"
         } else {
         wrap.classList.add("wrong");
-        popupTitle.textContent = "😵 残念…"
-        popupBody.textContent = "もう一度チャレンジ！"
+        popupTitle.textContent = "😵 ざんねん…"
+        popupBody.textContent = "もういちどチャレンジ！"
         keyword.style.display = "none";
         popupWrapper.style.display = "flex"
         }

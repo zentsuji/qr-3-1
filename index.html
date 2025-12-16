@@ -263,15 +263,6 @@
           aria-labelledby="qText"
         ></div>
 
-        <!--
-        <div id="resOK" class="result ok" role="status" aria-live="assertive">
-          <strong>🎉 正解！</strong>
-          <div id="keyword" class="kw" style="display: none"></div>
-        </div>
-        <div id="resNG" class="result ng" role="status" aria-live="assertive">
-          <strong>😵 残念…</strong> もう一度チャレンジ！
-        </div>
-        -->
         <div id="popup-wrapper" style="display: none">
           <div id="popup-inside">
             <div id="close">x</div>
@@ -358,10 +349,6 @@
         keyword.style.display = "none";
         popupWrapper.style.display = "flex"
         }
-
-        // 結果表示
-        //resOK.style.display = correct ? "block" : "none";
-        //resNG.style.display = correct ? "none" : "block";
 
         // 正解キーワード（任意）
         if (correct && QUIZ_DATA.keywordOnCorrect) {

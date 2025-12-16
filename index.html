@@ -211,6 +211,34 @@
         font-size: 15px;
         color: var(--muted);
       }
+      .btn-keyword {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 10px;
+        background: rgba(59, 130, 246, 0.25);
+        color: var(--text);
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        transition: border 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      }
+      .btn-keyword:hover:enabled {
+        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(59, 130, 246, 0.32);
+        transform: translateY(-1px);
+      }
+      .btn-keyword:disabled {
+        opacity: 1;
+        cursor: default;
+        filter: none;
+      }
+      .btn-keyword.highlight {
+        background: #fbbf24;
+        color: #0b1020;
+        font-weight: 800;
+        box-shadow: 0 8px 24px rgba(251,191,36,0.35);
+      }
     </style>
   </head>
   <body>
@@ -242,7 +270,7 @@
             <div id="message">
               <h2 id="popup-title">🎉 正解！</h2>
               <p id="popup-body">キーワードは...</p>
-              <div id="keyword" class="kw" style="display: none;"></div>
+              <button id="showKeywordBtn" class="btn-keyword">キーワードを表示</button>
             </div>
           </div>
         </div>
@@ -269,7 +297,8 @@
       const $ = (id) => document.getElementById(id);
       const qText = $("qText");
       const choicesEl = $("choices");
-      const keyword = $("keyword");
+      //const keyword = $("keyword");
+      const showKeywordBtn = document.getElementById("showKeywordBtn");
       const popupWrapper = document.getElementById("popup-wrapper")
       const close = document.getElementById("close")
       const popupTitle = document.getElementById("popup-title")
@@ -279,8 +308,10 @@
 
       function renderQuiz() {
         locked = false;
-        keyword.style.display = "none";
-        keyword.textContent = "";
+        //keyword.style.display = "none";
+        //keyword.textContent = "";
+        showKeywordBtn.textContent = "キーワードを表示";
+        showKeywordBtn.disabled = true;
 
         qText.innerHTML = QUIZ_DATA.question;
         choicesEl.innerHTML = "";
@@ -311,18 +342,21 @@
         popupTitle.textContent = "🎉 せいかい！"
         popupBody.textContent = "キーワードは...？"
         popupWrapper.style.display = "flex"
+        showKeywordBtn.style.display = "block"
+        showKeywordBtn.textContent = "キーワードを表示";
+        showKeywordBtn.disabled = false;
+        showKeywordBtn.onclick = () => {
+          showKeywordBtn.textContent = "キーワード：" + QUIZ_DATA.keywordOnCorrect;
+          showKeywordBtn.classList.add("highlight");
+          showKeywordBtn.disabled = true;
+        };
         } else {
         wrap.classList.add("wrong");
         popupTitle.textContent = "😵 ざんねん…"
         popupBody.textContent = "もういちどチャレンジ！"
-        keyword.style.display = "none";
+        //keyword.style.display = "none";
         popupWrapper.style.display = "flex"
-        }
-
-        // 正解キーワード（任意）
-        if (correct && QUIZ_DATA.keywordOnCorrect) {
-          keyword.textContent = "キーワード：" + QUIZ_DATA.keywordOnCorrect;
-          keyword.style.display = "inline-block";
+        showKeywordBtn.style.display = "none"
         }
 
         popupWrapper.addEventListener("click", e => {
